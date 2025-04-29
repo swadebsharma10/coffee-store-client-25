@@ -1,3 +1,4 @@
+import Swal from "sweetalert2";
 
 
 const AddCoffee = () => {
@@ -16,25 +17,25 @@ const AddCoffee = () => {
     const newCoffee = {name, chef, supplier, category, taste, details, photo};
     console.log(newCoffee)
 
-//     fetch(`https://coffee-store-server-pi-woad.vercel.app/coffee`, {
-//       method: 'POST',
-//       headers:{
-//         'content-type': 'application/json'
-//       },
-//       body: JSON.stringify(newCoffee)
+    fetch(`http://localhost:5000/coffee`, {
+      method: 'POST',
+      headers:{
+        'content-type': 'application/json'
+      },
+      body: JSON.stringify(newCoffee)
 
-//     })
-//     .then(res => res.json())
-//     .then(data =>{
+    })
+    .then(res => res.json())
+    .then(data =>{
      
-//       if(data.insertedId){
-//       //   Swal.fire({
-//       //     title: "Successfully add coffee!",
-//       //     icon: "success",
-//       //     draggable: true
-//       //   });
-//       }
-//     })
+      if(data.insertedId){
+        Swal.fire({
+          title: "Successfully add coffee!",
+          icon: "success",
+          draggable: true
+        });
+      }
+    })
     
 
   }

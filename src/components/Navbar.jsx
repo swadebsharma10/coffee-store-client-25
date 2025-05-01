@@ -5,7 +5,7 @@ const Navbar = () => {
       const navLinks = <>
       <li><Link to='/'>Home</Link></li>
       <li><Link to='/addCoffee'>AddCoffee</Link></li>
-      <li><Link to='/'>Home</Link></li>
+      <li><Link to='/reg'>Register</Link></li>
       </>
       return (
             <div className="navbar bg-secondary-content">
@@ -39,7 +39,7 @@ const Navbar = () => {
     </ul>
   </div>
   <div className="navbar-end">
-    <a className="btn">Login</a>
+    <Link to='/login' className="btn">Login</Link>
   </div>
 </div>
       );

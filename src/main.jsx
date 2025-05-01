@@ -7,6 +7,8 @@ import Main from './Layout/Main.jsx';
 import Home from './Pages/Home.jsx';
 import AddCoffee from './Pages/AddCoffee.jsx';
 import UpdateCoffee from './Pages/UpdateCoffee.jsx';
+import Register from './Pages/Register.jsx';
+import Login from './Pages/Login.jsx';
 
 const router = createBrowserRouter([
   {
@@ -17,6 +19,14 @@ const router = createBrowserRouter([
         path: '/',
         element: <Home/>,
         loader: ()=> fetch(`http://localhost:5000/coffee`)
+      },
+      {
+        path: '/reg',
+        element: <Register/>
+      },
+      {
+        path: '/login',
+        element: <Login/>
       },
       {
         path: '/addCoffee',

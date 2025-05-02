@@ -1,24 +1,46 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../Providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { createUser } = useContext(AuthContext);
 
   const handleCreateUser = (e) => {
-      e.preventDefault();
-      const form = e.target;
-      const email = form.email.value;
-      const password = form.password.value;
-      // console.log(email, password)
-      createUser(email, password)
-      .then(result =>{
-            const user = result.user;
-            console.log('create user', user)
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const password = form.password.value;
+    // console.log(name,email, password)
+    createUser(email, password)
+      .then((result) => {
+        const user = result.user;
+        const createdAt = user.metadata.creationTime;
+        // Save new user to Database
+        const newUser = { name, email, createdAt };
+        fetch(`http://localhost:5000/users`, {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(newUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.insertedId) {
+              Swal.fire({
+                title: "User Register Successfully!",
+                icon: "success",
+                draggable: true,
+              });
+            }
+          });
       })
-      .catch(error =>{
-            console.log('error', error.message)
-      })
-}
+      .catch((error) => {
+        console.log("error", error.message);
+      });
+  };
 
   return (
     <div>
@@ -36,6 +58,13 @@ const Register = () => {
             <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
               <form onSubmit={handleCreateUser} className="card-body">
                 <fieldset className="fieldset">
+                  <label className="fieldset-label">Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    className="input"
+                    placeholder="Name"
+                  />
                   <label className="fieldset-label">Email</label>
                   <input
                     type="email"

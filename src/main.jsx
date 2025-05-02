@@ -10,6 +10,7 @@ import UpdateCoffee from "./Pages/UpdateCoffee.jsx";
 import Register from "./Pages/Register.jsx";
 import Login from "./Pages/Login.jsx";
 import AuthProvider from "./Providers/AuthProvider.jsx";
+import Users from "./Pages/Users.jsx";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,11 @@ const router = createBrowserRouter([
       {
         path: "/reg",
         element: <Register />,
+      },
+      {
+        path: "/users",
+        element: <Users></Users>,
+        loader: ()=> fetch(`http://localhost:5000/users`)
       },
       {
         path: "/login",

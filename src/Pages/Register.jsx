@@ -18,7 +18,7 @@ const Register = () => {
         const createdAt = user.metadata.creationTime;
         // Save new user to Database
         const newUser = { name, email, createdAt };
-        fetch(`http://localhost:5000/users`, {
+        fetch(`https://coffee-store-server-ivory-sigma.vercel.app/users`, {
           method: "POST",
           headers: {
             "content-type": "application/json",

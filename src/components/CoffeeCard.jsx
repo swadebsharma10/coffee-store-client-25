@@ -16,7 +16,7 @@ const CoffeeCard = ({ coffee , setCoffees, coffees}) => {
     }).then((result) => {
       if (result.isConfirmed) {
         //Delete a Coffee
-        fetch(`http://localhost:5000/coffee/${id}`, {
+        fetch(`https://coffee-store-server-ivory-sigma.vercel.app/coffee/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

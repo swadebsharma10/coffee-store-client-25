@@ -17,7 +17,7 @@ const AddCoffee = () => {
     const newCoffee = {name, chef, supplier, category, taste, details, photo};
     console.log(newCoffee)
 
-    fetch(`http://localhost:5000/coffee`, {
+    fetch(`https://coffee-store-server-ivory-sigma.vercel.app/coffee`, {
       method: 'POST',
       headers:{
         'content-type': 'application/json'
